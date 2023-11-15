@@ -1,0 +1,22 @@
+package pFormularios;
+
+public class frmMenuPrincipal extends javax.swing.JFrame {
+
+    public frmMenuPrincipal() {
+        initComponents();
+    }
+    
+
+private void mListadoActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        frmListadoEmpleado objA=new frmListadoEmpleado();
+        objA.setVisible(true);
+    }                                        
+
+    private void mRegistrarActionPerformed(java.awt.event.ActionEvent evt) {                                           
+            frmNuevoEmpleado objA=new frmNuevoEmpleado();
+            objA.setVisible(true);
+    }
+
+    private javax.swing.JMenu dpMenu;
+    private javax.swing.JMenuItem mListado;
+    private javax.swing.JMenuItem mRegistrar;                                 

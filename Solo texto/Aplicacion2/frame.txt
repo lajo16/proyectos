@@ -1,0 +1,70 @@
+package frame;
+
+public class frm extends javax.swing.JFrame {
+
+
+    public frm() {
+            initComponents();
+ //Llenando el combo de tipos de auto
+ cboTipo.addItem("Pequeño");
+ cboTipo.addItem("Mediano");
+ cboTipo.addItem("Grande");
+
+
+private void btnProcesarActionPerformed(java.awt.event.ActionEvent evt) {                                            
+  // Obtener datos del formulario
+    String tipo = cboTipo.getSelectedItem().toString();
+    int dias = Integer.parseInt(txtDias.getText());
+    double km = Double.parseDouble(txtKilometros.getText());
+    
+    // Realizar cálculos
+    double tarifa = 0;
+    if (tipo.equals("Pequeño")) 
+        tarifa = 15;
+    else if (tipo.equals("Mediano")) 
+        tarifa = 20;
+    else if (tipo.equals("Grande")) 
+        tarifa = 30;
+    else 
+        tarifa = 0;
+
+    double costo = 0;
+    if (tipo.equals("Pequeño")) 
+        costo = 0.2 * km;
+    else if (tipo.equals("Mediano")) 
+        costo = 0.3 * km;
+    else if (tipo.equals("Grande")) 
+        costo = 0.4 * km;
+    else 
+        costo = 0;
+    
+    double monto = (tarifa * dias) + costo;
+    double aumento = 0;
+    
+    if (km > 10) {
+        aumento = monto * (25 / 100.0);
+    }
+    
+    monto = monto + aumento;
+    
+    // Imprimir resultados
+    txtR.setText("** RESUMEN DE RENTA DE AUTOS **");
+    txtR.append("\nTIPO DE AUTO: " + tipo);
+    txtR.append("\nDIAS ALQUILADOS: " + dias);
+    txtR.append("\nKILOMETROS RECORRIDOS: " + km);
+    txtR.append("\n----------------------------------------------");
+    txtR.append("\nTARIFA ASIGNADA: $" + String.format("%.2f", tarifa));
+    txtR.append("\nCOSTO POR KILOMETROS: $" + String.format("%.2f", costo));
+    txtR.append("\nMONTO A PAGAR: $" + String.format("%.2f", monto));
+    }                                           
+
+
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnProcesar;
+    private javax.swing.JButton btnSalir;
+    private javax.swing.JComboBox<String> cboTipo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField txtDias;
+    private javax.swing.JTextField txtKilometros;
+    private javax.swing.JTextArea txtR;

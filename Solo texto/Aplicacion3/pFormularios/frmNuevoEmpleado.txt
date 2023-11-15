@@ -1,0 +1,78 @@
+package pFormularios;
+
+import java.sql.ResultSet;
+import pClases.Empleado;
+import pClases.EmpleadoDAO;
+
+public class frmNuevoEmpleado extends javax.swing.JFrame {
+    
+    ResultSet rs;
+    EmpleadoDAO objDAO = new EmpleadoDAO();
+    
+    public frmNuevoEmpleado() {
+        initComponents();
+        llenarCargo();
+        llenarDistrito();
+    }
+ void llenarCargo() {
+try {
+ rs = objDAO.listadoCargos();
+ while (rs.next()) {
+ cboCargo.addItem(rs.getString(2));
+ }
+ } catch (Exception ex) {
+ }
+ }
+void llenarDistrito() {
+ try {
+ rs = objDAO.listadoDistritos();
+ while (rs.next()) {
+ cboDistrito.addItem(rs.getString(2));
+ }
+} catch (Exception ex) {
+ }
+ }
+
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {                                             
+Empleado objE = new Empleado(getApellidos(),getNombres(),
+ getFechaNac(),getDireccion(),
+getDistrito(),getTelefono(),
+getCargo(),getFechaCon());
+ objDAO.registraEmpleado(objE);
+ }
+String getApellidos() {
+ return txtApellidos.getText();
+ }
+ String getNombres() {
+ return txtNombres.getText();
+ }
+ String getFechaNac() {
+ return txtFechaNac.getText();
+ }
+ String getDireccion() {
+ return txtDireccion.getText();
+ }
+ int getDistrito() {
+ return cboDistrito.getSelectedIndex() + 1;
+ }
+ String getTelefono() {
+ return txtTelefono.getText();
+ }
+ int getCargo() {
+ return cboCargo.getSelectedIndex() + 1;
+ }
+ String getFechaCon() {
+ return txtFechaCon.getText();
+    }  
+
+
+    private javax.swing.JButton btnRegistrar;
+    private javax.swing.JComboBox<String> cboCargo;
+    private javax.swing.JComboBox<String> cboDistrito;
+    private javax.swing.JTextField txtApellidos;
+    private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtFechaCon;
+    private javax.swing.JTextField txtFechaNac;
+    private javax.swing.JTextField txtNombres;
+    private javax.swing.JTextField txtTelefono;

@@ -1,0 +1,44 @@
+private void btnProcesarActionPerformed(java.awt.event.ActionEvent evt) {                                            
+
+// Declaración de variables
+int helado, cantidad;
+double impCom, impDes, impPago, precio = 0;
+
+// Entrada de datos
+helado = cboHelado.getSelectedIndex();  // Obteniendo el índice seleccionado de un cuadro combinado (combo box)
+cantidad = Integer.parseInt(txtCantidad.getText());  // Convirtiendo el texto de un campo de texto a un entero
+
+// Asignando el Precio por Tipo de Helado
+if (helado == 0) precio = 1.5;
+if (helado == 1) precio = 2.0;
+if (helado == 2) precio = 1.7;
+if (helado == 3) precio = 2.5;
+
+// Calculando el Importe de Compra
+impCom = precio * cantidad;
+
+// Calculando el Importe de Descuento
+if (impCom <= 10)
+    impDes = impCom * 5 / 100.0;
+else if (impCom <= 20)
+    impDes = impCom * 10 / 100.0;
+else
+    impDes = impCom * 20 / 100.0;
+
+// Calculando el Importe de Pago
+impPago = impCom - impDes;
+
+// Imprimiendo resultados
+txtS.setText(" *** Informe de Ventas ***");
+txtS.setText(txtS.getText() + "\nEl Importe de Compra es: " + impCom);
+txtS.setText(txtS.getText() + "\nEl Importe de Descuento es: " + impDes);
+txtS.setText(txtS.getText() + "\nEl Importe de Pago es: " + impPago);            
+    } 
+
+   private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnProcesar;
+    private javax.swing.JComboBox<String> cboHelado;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField txtCantidad;
+    private javax.swing.JTextArea txtS;                                          
