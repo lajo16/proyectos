@@ -1,0 +1,25 @@
+
+package pClases;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
+public class Conexion {
+    private Connection cn;
+    
+    public Connection getConecta(){
+        
+ try{
+ Class.forName("com.mysql.cj.jdbc.Driver"); 
+cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/negocios","root","");
+ }catch(Exception ex){
+ JOptionPane.showMessageDialog(null,"Error de conexion");
+ JOptionPane.showMessageDialog(null,ex.getMessage());
+ }
+ return cn;
+ }
+}
+
+
